@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <!-- ============================================================
+         UNITE DE PERSISTANCE : heritage-faz
+         Projet : TP sur les 3 strategies d'heritage JPA
+         ============================================================ -->
+    <persistence-unit name="UniteHeritageFaz" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- ============================================================
+             STRATEGIE 1 : SINGLE_TABLE
+             ============================================================ -->
+        <class>com.faz.heritage.model.EnginMoteurFazzBout</class>
+        <class>com.faz.heritage.model.BerlineUrbaineFazzBout</class>
+        <class>com.faz.heritage.model.DeuxRouesFazzBout</class>
+
+        <!-- ============================================================
+             STRATEGIE 2 : JOINED
+             ============================================================ -->
+        <class>com.faz.heritage.model.CollaborateurFazzBout</class>
+        <class>com.faz.heritage.model.IngenieurLogicielFazzBout</class>
+        <class>com.faz.heritage.model.ChefDeProjetFazzBout</class>
+
+        <!-- ============================================================
+             STRATEGIE 3 : TABLE_PER_CLASS
+             ============================================================ -->
+        <class>com.faz.heritage.model.ArticleCommercialFazzBout</class>
+        <class>com.faz.heritage.model.OuvrageLitteraireFazzBout</class>
+        <class>com.faz.heritage.model.AppareilElectroniqueFazzBout</class>
+
+        <!-- ============================================================
+             PROPRIETES DE CONNEXION ET DE CONFIGURATION HIBERNATE
+             ============================================================ -->
+        <properties>
+
+            <!-- ==================== CONNEXION JDBC (H2 en memoire) ==================== -->
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:h2:mem:base_heritage_faz;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+
+            <!-- ==================== DIALECTE ET GENERATION DU SCHEMA ==================== -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+
+            <!-- ==================== AFFICHAGE DES REQUETES SQL ==================== -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>
